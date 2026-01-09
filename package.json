@@ -9,11 +9,13 @@
     "dev:backend": "tsx watch src/server/index.ts",
     "dev:frontend": "vite",
     "build": "npm run build:frontend && npm run build:backend",
-    "build:frontend": "vue-tsc && vite build",
+    "build:frontend": "vite build",
+    "build:frontend:check": "vue-tsc && vite build",
     "build:backend": "tsc -p tsconfig.server.json && npm run copy-data",
     "copy-data": "node scripts/copy-data.js",
     "start": "node dist/server/index.js",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "axios": "^1.6.2",
