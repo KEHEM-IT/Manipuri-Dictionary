@@ -1,0 +1,49 @@
+{
+  "letter": "ড",
+  "words": [
+    {
+      "bpy": "ডুলি",
+      "bn": "ডুলি",
+      "en": "basket",
+      "sankrit": "डुली (Ḍulī)",
+      "romanization": ["Duli"],
+      "similar-prons": ["ডুলি"],
+      "meaning": ["ছোট ঝুড়ি"],
+      "description": "ডুলি বাঁশের ছোট ঝুড়ি।",
+      "exampleSentences": ["ডুলিগো ফল দে"],
+      "IPA": "/ɖuli/",
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "স্ত্রী",
+        "number": { "singular": true, "plural": "ডুলিগি" }
+      },
+      "usage": {
+        "commonness": "high",
+        "region": ["Assam"]
+      },
+      "cat": ["পাত্র"]
+    },
+    {
+      "bpy": "ডাবা",
+      "bn": "ডাবা",
+      "en": "box",
+      "sankrit": "डिब्बा (Ḍibbā)",
+      "romanization": ["Daba"],
+      "similar-prons": ["ডাব্বা"],
+      "meaning": ["ছোট বাক্স"],
+      "description": "ডাবা জিনিস রাখার পাত্র।",
+      "exampleSentences": ["ডাবাগো বই দে"],
+      "IPA": "/ɖaba/",
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "স্ত্রী",
+        "number": { "singular": true, "plural": "ডাবাগি" }
+      },
+      "usage": {
+        "commonness": "medium",
+        "region": ["Tripura"]
+      },
+      "cat": ["পাত্র"]
+    }
+  ]
+}

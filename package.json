@@ -1,0 +1,31 @@
+{
+  "name": "bishnupriya-dictionary",
+  "version": "1.0.0",
+  "description": "A modern, feature-rich dictionary web application built with Vue 3, TypeScript, and Tailwind CSS.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "npm run build --prefix frontend",
+    "build:backend": "npm run build --prefix backend",
+    "start": "cross-env NODE_ENV=production node backend/dist/index.js",
+    "start:pm2": "pm2 start ecosystem.config.js",
+    "stop:pm2": "pm2 stop ecosystem.config.js",
+    "restart:pm2": "pm2 restart ecosystem.config.js",
+    "reload:pm2": "pm2 reload ecosystem.config.js",
+    "delete:pm2": "pm2 delete ecosystem.config.js",
+    "logs:pm2": "pm2 logs bishnupriya-dictionary",
+    "monit:pm2": "pm2 monit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cross-env": "^7.0.3"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "letter": "থ",
+  "words": [
+    {
+      "bpy": "থলি",
+      "bn": "থলে",
+      "en": "bag",
+      "sankrit": "थैली (Thailī)",
+      "romanization": ["Tholi"],
+      "similar-prons": ["থলি"],
+      "meaning": ["কাপড়ের পাত্র"],
+      "description": "থলি কাপড়ের তৈরি ব্যাগ।",
+      "exampleSentences": ["থলিগো চাল দে"],
+      "IPA": "/t̪ʰoli/",
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "স্ত্রী",
+        "number": { "singular": true, "plural": "থলিগি" }
+      },
+      "usage": {
+        "commonness": "high",
+        "region": ["Bangladesh"]
+      },
+      "cat": ["পাত্র"]
+    }
+  ]
+}
