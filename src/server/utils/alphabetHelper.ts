@@ -1,7 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
-import { Word } from '../types/index.js';
+import { fileURLToPath } from 'url';
+import { Word } from '../types';
+
+// Get __dirname equivalent in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Bishnupriya Manipuri alphabets mapping
 const ALPHABET_MAP: { [key: string]: string } = {
@@ -52,8 +57,7 @@ export function loadAlphabetFile(fileName: string): Word[] {
             path.join(__dirname, '../data/alphabets', fileName),
             path.join(__dirname, '../../src/data/alphabets', fileName),
             path.join(process.cwd(), 'src/data/alphabets', fileName),
-            path.join(process.cwd(), 'src/server/data/alphabets', fileName),
-            path.join(process.cwd(), 'dist/server/data/alphabets', fileName),
+            path.join(process.cwd(), 'backend/src/data/alphabets', fileName),
         ];
 
         let filePath = '';

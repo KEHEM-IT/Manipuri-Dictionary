@@ -1,6 +1,5 @@
 // Location: frontend/src/types/index.ts
 export type Language = 'bpy' | 'bn' | 'en';
-export type Theme = 'light' | 'dark';
 
 // Legacy type aliases for compatibility
 export type LanguageOld = 'bishnupriya' | 'bengali' | 'english';

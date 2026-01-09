@@ -1,3 +1,4 @@
+// Location: backend/src/routes/dictionary.ts
 import { Router, Request, Response } from 'express';
 import {
     getAllWords,
@@ -5,7 +6,7 @@ import {
     getWordById,
     getAllAlphabets,
     getWordsByAlphabet
-} from '../utils/alphabetHelper.js';
+} from '../utils/alphabetHelper';
 
 const router = Router();
 
