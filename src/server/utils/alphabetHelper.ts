@@ -56,20 +56,27 @@ export function loadAlphabetFile(fileName: string): Word[] {
         const possiblePaths = [
             path.join(__dirname, '../data/alphabets', fileName),
             path.join(__dirname, '../../src/data/alphabets', fileName),
+            path.join(__dirname, '../../data/alphabets', fileName),
             path.join(process.cwd(), 'src/data/alphabets', fileName),
+            path.join(process.cwd(), 'dist/server/data/alphabets', fileName),
             path.join(process.cwd(), 'backend/src/data/alphabets', fileName),
+            path.join('/var/task/dist/server/data/alphabets', fileName), // Vercel serverless path
         ];
 
         let filePath = '';
         for (const tryPath of possiblePaths) {
             if (fs.existsSync(tryPath)) {
                 filePath = tryPath;
+                console.log(`✅ Found file at: ${filePath}`);
                 break;
             }
         }
 
         if (!filePath) {
-            console.warn(`Alphabet file not found: ${fileName}. Tried paths:`, possiblePaths);
+            console.error(`❌ Alphabet file not found: ${fileName}`);
+            console.error('Tried paths:', possiblePaths);
+            console.error('Current working directory:', process.cwd());
+            console.error('__dirname:', __dirname);
             return [];
         }
 

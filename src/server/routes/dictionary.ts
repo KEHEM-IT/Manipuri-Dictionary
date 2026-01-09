@@ -74,9 +74,11 @@ router.get('/search', (req: Request, res: Response) => {
             data: results
         });
     } catch (error) {
+        console.error('Search error:', error);
         res.status(500).json({
             success: false,
-            error: 'Search failed'
+            error: 'Search failed',
+            details: error instanceof Error ? error.message : 'Unknown error'
         });
     }
 });
