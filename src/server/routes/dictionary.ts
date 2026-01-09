@@ -14,7 +14,7 @@ const router = Router();
  * GET /api/dictionary/words
  * Get all words from all alphabet files
  */
-router.get('/words', (req: Request, res: Response) => {
+router.get('/words', (_req: Request, res: Response) => {
     try {
         const words = getAllWords();
         res.json({
@@ -114,7 +114,7 @@ router.get('/word/:id', (req: Request, res: Response) => {
  * GET /api/dictionary/alphabets
  * Get all available alphabets
  */
-router.get('/alphabets', (req: Request, res: Response) => {
+router.get('/alphabets', (_req: Request, res: Response) => {
     try {
         const alphabets = getAllAlphabets();
         res.json({

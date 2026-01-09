@@ -13,7 +13,7 @@ app.use(express.json());
 app.use('/api/dictionary', dictionaryRoutes);
 
 // Health check
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (_req, res) => {
     res.json({
         status: 'ok',
         message: 'Bishnupriya Dictionary API is running',
@@ -22,7 +22,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // 404 handler
-app.use((req, res) => {
+app.use((_req, res) => {
     res.status(404).json({
         success: false,
         error: 'Route not found'
