@@ -10,7 +10,7 @@
   ],
   "functions": {
     "api/index.ts": {
-      "includeFiles": "dist/server/data/**"
+      "includeFiles": "{dist/server/data/**,api/data/**,src/server/data/**}"
     }
   }
 }
