@@ -9,7 +9,8 @@ const __dirname = path.dirname(__filename);
 const srcDir = path.join(__dirname, '../src/server/data');
 const destDirs = [
     path.join(__dirname, '../dist/server/data'),
-    path.join(__dirname, '../api/data')  // For Vercel serverless
+    path.join(__dirname, '../api/data'),  // For Vercel serverless
+    path.join(__dirname, '../.vercel/output/functions/api/data')  // Vercel build output
 ];
 
 function copyRecursive(src, dest) {
