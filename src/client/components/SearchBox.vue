@@ -150,9 +150,10 @@ const selectSuggestion = (suggestion: Word) => {
     clearSuggestions();
 
     // Navigate to word detail page using word text instead of ID
+    // Don't encode - Vue Router handles encoding automatically
     router.push({
         name: 'WordDetail',
-        params: { identifier: encodeURIComponent(wordText) },
+        params: { identifier: wordText },
         query: { lang: selectedLanguage.value }
     });
 };
