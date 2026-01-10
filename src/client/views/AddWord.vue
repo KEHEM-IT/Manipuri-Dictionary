@@ -200,14 +200,14 @@ const handleSubmit = async () => {
 
         // Clean up empty arrays and nested arrays
         Object.keys(submissionData).forEach(key => {
-            if (Array.isArray(submissionData[key as keyof typeof submissionData])) {
-                const arr = submissionData[key as keyof typeof submissionData] as any[];
-                submissionData[key as keyof typeof submissionData] = arr.filter(item => {
+            const value = (submissionData as any)[key];
+            if (Array.isArray(value)) {
+                (submissionData as any)[key] = value.filter(item => {
                     if (Array.isArray(item)) {
                         return item.some(subItem => subItem && subItem.trim());
                     }
                     return item && item.trim && item.trim();
-                }) as any;
+                });
             }
         });
 
