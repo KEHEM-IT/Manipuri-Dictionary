@@ -28,10 +28,20 @@ export function useAutocomplete() {
                 loading.value = true;
                 error.value = null;
                 
+                // Track start time to ensure minimum 1 second loading
+                const startTime = Date.now();
+                
                 try {
                     const response = await axios.get('/api/dictionary/autocomplete', {
                         params: { term, language, limit }
                     });
+                    
+                    // Calculate elapsed time
+                    const elapsedTime = Date.now() - startTime;
+                    const remainingTime = Math.max(0, 1000 - elapsedTime);
+                    
+                    // Wait for remaining time to ensure at least 1 second of loading
+                    await new Promise(wait => setTimeout(wait, remainingTime));
                     
                     if (response.data.success) {
                         suggestions.value = response.data.data;
@@ -39,6 +49,11 @@ export function useAutocomplete() {
                         suggestions.value = [];
                     }
                 } catch (err) {
+                    // Still ensure minimum 1 second even on error
+                    const elapsedTime = Date.now() - startTime;
+                    const remainingTime = Math.max(0, 1000 - elapsedTime);
+                    await new Promise(wait => setTimeout(wait, remainingTime));
+                    
                     error.value = 'Failed to fetch suggestions';
                     suggestions.value = [];
                     console.error(err);

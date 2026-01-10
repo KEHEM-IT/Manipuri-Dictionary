@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { Language } from '../types';
+import { Language, Word } from '../types';
 import { useVoiceSearch } from '../composables/useVoiceSearch';
 import { useAutocomplete } from '../composables/useAutocomplete';
 
@@ -42,7 +42,7 @@ const noSuggestionsFound = computed(() => {
 // VOICE RECOGNITION HANDLER
 const handleVoiceSearch = () => {
     if (!isSupported.value) return;
-    
+
     if (isListening.value) {
         stopListening();
     } else {
@@ -143,12 +143,12 @@ const handleInputChange = () => {
     }
 };
 
-const selectSuggestion = (suggestion: any) => {
-    const wordText = suggestion.word?.[selectedLanguage.value] || suggestion.word?.bpy || '';
+const selectSuggestion = (suggestion: Word) => {
+    const wordText = suggestion[selectedLanguage.value] || suggestion.bpy || '';
     searchTerm.value = wordText;
     showSuggestions.value = false;
     clearSuggestions();
-    
+
     // Navigate to word detail page
     router.push({
         name: 'WordDetail',
@@ -182,7 +182,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
         event.preventDefault();
         return;
     }
-    
+
     // Handle arrow keys for suggestion navigation
     if (showSuggestions.value && suggestions.value.length > 0) {
         if (event.key === 'ArrowDown') {
@@ -231,7 +231,7 @@ watch(selectedLanguage, () => {
     const enableAvro = selectedLanguage.value !== 'en';
     isAvroEnabled.value = enableAvro;
     toggleBanglaInput(enableAvro);
-    
+
     // Update voice recognition language when language changes
     const langCode = selectedLanguage.value === 'en' ? 'en-US' : 'bn-BD';
     setLanguage(langCode);
@@ -309,11 +309,8 @@ onUnmounted(() => {
 
         <div class="relative search-container">
             <input ref="inputRef" v-model="searchTerm" type="text" autofocus
-                :placeholder="searchTerm.length === 0 ? typedText : ''" 
-                @input="handleInputChange"
-                @keydown="handleKeyDown" 
-                @focus="searchTerm.trim() && (showSuggestions = true)"
-                :class="[
+                :placeholder="searchTerm.length === 0 ? typedText : ''" @input="handleInputChange"
+                @keydown="handleKeyDown" @focus="searchTerm.trim() && (showSuggestions = true)" :class="[
                     'w-full px-6 py-4 pr-32 text-lg rounded-2xl border-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500',
                     hasError ? 'border-red-500 focus:border-red-500' : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400'
                 ]" />
@@ -341,39 +338,98 @@ onUnmounted(() => {
             </div>
 
             <!-- Suggestions Dropdown -->
-            <div v-if="showSuggestions && (suggestions.length > 0 || noSuggestionsFound)" 
-                class="absolute z-50 w-full mt-2 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-xl shadow-xl max-h-96 overflow-y-auto">
-                
+            <div v-if="showSuggestions && (suggestionsLoading || suggestions.length > 0 || noSuggestionsFound)"
+                class="absolute z-50 w-full mt-2 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-xl shadow-xl max-h-96 overflow-y-auto animate-slide-down">
+
                 <!-- Loading State -->
-                <div v-if="suggestionsLoading" class="p-4 text-center text-gray-500 dark:text-gray-400">
-                    <i class="fas fa-spinner fa-spin mr-2"></i>Loading suggestions...
+                <div v-if="suggestionsLoading" class="p-8">
+                    <div class="flex flex-col items-center justify-center gap-4">
+                        <!-- Animated spinner -->
+                        <div class="relative w-16 h-16">
+                            <div
+                                class="absolute top-0 left-0 w-full h-full border-4 border-blue-200 dark:border-blue-900 rounded-full">
+                            </div>
+                            <div
+                                class="absolute top-0 left-0 w-full h-full border-4 border-transparent border-t-blue-600 dark:border-t-blue-400 rounded-full animate-spin">
+                            </div>
+                        </div>
+                        <!-- Loading text -->
+                        <div class="text-center">
+                            <p class="text-gray-600 dark:text-gray-400 font-medium">Searching...</p>
+                            <p class="text-sm text-gray-400 dark:text-gray-500 mt-1">Finding words for "{{ searchTerm
+                                }}"</p>
+                        </div>
+                        <!-- Animated dots -->
+                        <div class="flex gap-1">
+                            <span class="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full animate-bounce"
+                                style="animation-delay: 0ms"></span>
+                            <span class="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full animate-bounce"
+                                style="animation-delay: 150ms"></span>
+                            <span class="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full animate-bounce"
+                                style="animation-delay: 300ms"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Suggestions List -->
                 <ul v-else-if="suggestions.length > 0" class="py-2">
-                    <li v-for="(suggestion, index) in suggestions" 
-                        :key="suggestion.id"
-                        @click="selectSuggestion(suggestion)"
-                        @mouseenter="selectedSuggestionIndex = index"
-                        :class="[
-                            'px-4 py-3 cursor-pointer transition-colors border-b border-gray-100 dark:border-gray-700 last:border-b-0',
-                            selectedSuggestionIndex === index 
-                                ? 'bg-blue-50 dark:bg-blue-900/30' 
+                    <li v-for="(suggestion, index) in suggestions" :key="suggestion.id"
+                        @click="selectSuggestion(suggestion)" @mouseenter="selectedSuggestionIndex = index" :class="[
+                            'px-5 py-4 cursor-pointer transition-all duration-200 border-b border-gray-100 dark:border-gray-700 last:border-b-0',
+                            selectedSuggestionIndex === index
+                                ? 'bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 shadow-sm'
                                 : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'
                         ]">
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-book text-blue-500 dark:text-blue-400 mt-1"></i>
-                            <div class="flex-1 min-w-0">
-                                <div class="font-semibold text-gray-900 dark:text-white truncate">
-                                    {{ suggestion.word?.[selectedLanguage] || suggestion.word?.bpy || 'N/A' }}
-                                </div>
-                                <div v-if="suggestion.pronunciation" class="text-sm text-gray-500 dark:text-gray-400 truncate">
-                                    {{ suggestion.pronunciation }}
-                                </div>
-                                <div v-if="suggestion.partOfSpeech" class="text-xs text-gray-400 dark:text-gray-500 mt-1">
-                                    {{ suggestion.partOfSpeech }}
-                                </div>
+                        <div class="flex items-center gap-3">
+                            <!-- Icon -->
+                            <div :class="[
+                                'flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200',
+                                selectedSuggestionIndex === index
+                                    ? 'bg-blue-500 text-white shadow-md'
+                                    : 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400'
+                            ]">
+                                <i class="fas fa-book text-sm"></i>
                             </div>
+
+                            <!-- Word Information in Single Line -->
+                            <div class="flex-1 min-w-0 flex items-center gap-3 flex-wrap">
+
+                                <!-- BPY Word (Prominent) -->
+                                <span class="text-2xl text-gray-900 dark:text-white tracking-wide text-left">
+                                    {{ suggestion.bpy || 'N/A' }}
+                                </span>
+
+                                <!-- Grammar Part of Speech -->
+                                <span v-if="suggestion.grammar?.partOfSpeech?.length" class="px-3 py-1 text-xs font-medium rounded-full text-left
+                                    bg-gradient-to-r from-sky-100 to-teal-100
+                                    dark:from-sky-500/20 dark:to-teal-500/20
+                                    text-sky-700 dark:text-sky-300
+                                    border border-sky-200/60 dark:border-sky-800/60">
+                                    {{ suggestion.grammar.partOfSpeech.join(", ") }}
+                                </span>
+
+                                <!-- Bengali Word -->
+                                <span v-if="suggestion.bn"
+                                    class="text-lg font-medium text-green-700 dark:text-green-400 text-left">
+                                    বাংলা: {{ suggestion.bn }}
+                                </span>
+
+                                <!-- English Word -->
+                                <span v-if="suggestion.en"
+                                    class="text-base font-medium text-blue-600 dark:text-blue-400 italic text-left">
+                                    English: {{ suggestion.en }}
+                                </span>
+
+                            </div>
+
+
+                            <!-- Arrow Icon -->
+                            <i :class="[
+                                'fas fa-chevron-right text-sm transition-all duration-200',
+                                selectedSuggestionIndex === index
+                                    ? 'text-blue-500 dark:text-blue-400 transform translate-x-1'
+                                    : 'text-gray-300 dark:text-gray-600'
+                            ]"></i>
                         </div>
                     </li>
                 </ul>
@@ -430,8 +486,36 @@ onUnmounted(() => {
     }
 }
 
+@keyframes pulse-subtle {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .animate-fade-in {
     animation: fade-in 0.2s ease-out;
+}
+
+.animate-slide-down {
+    animation: slide-down 0.3s ease-out;
 }
 
 /* Custom scrollbar for suggestions */
@@ -449,5 +533,32 @@ onUnmounted(() => {
 
 .max-h-96::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* Loading spinner glow effect */
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite, glow 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 </style>
