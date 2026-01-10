@@ -95,6 +95,16 @@ function getAllWords() {
     return allWords;
 }
 
+// Find word by ID across all files
+function findWordById(wordId) {
+    for (const fileName of Object.values(ALPHABET_MAP)) {
+        const words = loadAlphabetFile(fileName);
+        const found = words.find(word => word.id === wordId);
+        if (found) return found;
+    }
+    return null;
+}
+
 // Search words
 function searchWordInAlphabets(searchTerm, language) {
     const results = [];
@@ -105,12 +115,15 @@ function searchWordInAlphabets(searchTerm, language) {
         const fileName = ALPHABET_MAP[firstChar];
         if (fileName) {
             const words = loadAlphabetFile(fileName);
-            results.push(...words.filter(word => word.bpy.toLowerCase().includes(searchLower)));
+            results.push(...words.filter(word => word.bpy && word.bpy.toLowerCase().includes(searchLower)));
         }
     } else {
         Object.values(ALPHABET_MAP).forEach(fileName => {
             const words = loadAlphabetFile(fileName);
-            results.push(...words.filter(word => word[language].toLowerCase().includes(searchLower)));
+            results.push(...words.filter(word => {
+                const value = word[language];
+                return value && value.toLowerCase().includes(searchLower);
+            }));
         });
     }
     
@@ -164,6 +177,39 @@ app.get('/api/dictionary/words', (req, res) => {
             success: true,
             count: words.length,
             data: words
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+// Get word by ID
+app.get('/api/dictionary/word/:id', (req, res) => {
+    try {
+        const { id } = req.params;
+        
+        if (!id) {
+            return res.status(400).json({
+                success: false,
+                error: 'Word ID is required'
+            });
+        }
+        
+        const word = findWordById(id);
+        
+        if (!word) {
+            return res.status(404).json({
+                success: false,
+                error: 'Word not found'
+            });
+        }
+        
+        res.json({
+            success: true,
+            data: word
         });
     } catch (error) {
         res.status(500).json({

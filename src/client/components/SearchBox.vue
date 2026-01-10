@@ -149,10 +149,11 @@ const selectSuggestion = (suggestion: Word) => {
     showSuggestions.value = false;
     clearSuggestions();
 
-    // Navigate to word detail page
+    // Navigate to word detail page using word text instead of ID
     router.push({
         name: 'WordDetail',
-        params: { identifier: suggestion.id }
+        params: { identifier: encodeURIComponent(wordText) },
+        query: { lang: selectedLanguage.value }
     });
 };
 
