@@ -3,18 +3,20 @@
 import { ref, watch, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { Language } from '../types';
+import { useVoiceSearch } from '../composables/useVoiceSearch';
 
 // STATE
 const router = useRouter();
 const searchTerm = ref('');
 const selectedLanguage = ref<Language>('bpy');
-const isListening = ref(false);
 const isAvroEnabled = ref(true);
 const typedText = ref('');
 const currentHintIndex = ref(0);
 const inputRef = ref<HTMLInputElement | null>(null);
 const hasError = ref(false);
-const isSpeechRecognitionSupported = ref(typeof window !== 'undefined' && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window));
+
+// VOICE SEARCH
+const { isListening, transcript, isSupported, initVoiceRecognition, startListening, stopListening, setLanguage } = useVoiceSearch();
 
 // CONSTANTS
 const hintWords: Record<Language, string[]> = {
@@ -23,29 +25,21 @@ const hintWords: Record<Language, string[]> = {
     en: ['History', 'Culture', 'Literature', 'Language', 'Writers']
 };
 
-let recognition: any = null;
 let typingInterval: any = null;
 let erasingTimeout: any = null;
 
-// VOICE RECOGNITION
-const initVoiceRecognition = () => {
-    if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) return;
-
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    recognition = new SpeechRecognition();
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.onresult = (event: any) => {
-        searchTerm.value = event.results[0][0].transcript;
-        handleSearch();
-    };
-    recognition.onend = recognition.onerror = () => isListening.value = false;
-};
-
+// VOICE RECOGNITION HANDLER
 const handleVoiceSearch = () => {
-    if (!recognition) return;
-    isListening.value ? recognition.stop() : recognition.start();
-    isListening.value = !isListening.value;
+    if (!isSupported.value) return;
+    
+    if (isListening.value) {
+        stopListening();
+    } else {
+        // Set language before starting
+        const langCode = selectedLanguage.value === 'en' ? 'en-US' : 'bn-BD';
+        setLanguage(langCode);
+        startListening();
+    }
 };
 
 // BANGLA INPUT
@@ -157,6 +151,10 @@ watch(selectedLanguage, () => {
     const enableAvro = selectedLanguage.value !== 'en';
     isAvroEnabled.value = enableAvro;
     toggleBanglaInput(enableAvro);
+    
+    // Update voice recognition language when language changes
+    const langCode = selectedLanguage.value === 'en' ? 'en-US' : 'bn-BD';
+    setLanguage(langCode);
 });
 
 watch(searchTerm, (newVal) => {
@@ -167,6 +165,19 @@ watch(searchTerm, (newVal) => {
         clearTimeout(erasingTimeout);
     } else {
         startTypingAnimation();
+    }
+});
+
+// Watch for voice transcript and append to search box
+watch(transcript, (newTranscript) => {
+    if (newTranscript) {
+        // Append new transcript to existing text with a space
+        if (searchTerm.value.trim()) {
+            searchTerm.value = searchTerm.value.trim() + ' ' + newTranscript;
+        } else {
+            searchTerm.value = newTranscript;
+        }
+        // Don't auto-search, just populate the input
     }
 });
 
@@ -227,7 +238,7 @@ onUnmounted(() => {
                     <i class="fas fa-keyboard text-sm"></i>
                 </button>
 
-                <button v-if="isSpeechRecognitionSupported" @click="handleVoiceSearch" :class="[
+                <button v-if="isSupported" @click="handleVoiceSearch" :class="[
                     'p-2 rounded-lg transition-all',
                     isListening ? 'bg-red-500 text-white animate-pulse' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
                 ]" :title="isListening ? 'Stop listening' : 'Voice search'">

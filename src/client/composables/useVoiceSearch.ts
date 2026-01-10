@@ -14,16 +14,17 @@ export function useVoiceSearch() {
             recognition = new SpeechRecognition();
             recognition.continuous = false;
             recognition.interimResults = false;
-            recognition.lang = 'en-US';
+            recognition.lang = 'bn-BD'; // Default to Bengali
             isSupported.value = true;
 
             recognition.onresult = (event: any) => {
                 const result = event.results[0][0].transcript;
                 transcript.value = result;
-                isListening.value = false;
+                // Don't auto-search, just update transcript
             };
 
-            recognition.onerror = () => {
+            recognition.onerror = (event: any) => {
+                console.error('Speech recognition error:', event.error);
                 isListening.value = false;
             };
 
@@ -33,11 +34,22 @@ export function useVoiceSearch() {
         }
     };
 
+    const setLanguage = (lang: string) => {
+        if (recognition) {
+            recognition.lang = lang;
+        }
+    };
+
     const startListening = () => {
         if (recognition && !isListening.value) {
             transcript.value = '';
             isListening.value = true;
-            recognition.start();
+            try {
+                recognition.start();
+            } catch (error) {
+                console.error('Failed to start recognition:', error);
+                isListening.value = false;
+            }
         }
     };
 
@@ -54,6 +66,7 @@ export function useVoiceSearch() {
         isSupported,
         initVoiceRecognition,
         startListening,
-        stopListening
+        stopListening,
+        setLanguage
     };
 }
