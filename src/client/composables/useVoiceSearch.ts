@@ -1,4 +1,4 @@
-// src/client/composable/use
+// src/client/composables/useVoiceSearch.ts
 import { ref } from 'vue';
 
 export function useVoiceSearch() {
