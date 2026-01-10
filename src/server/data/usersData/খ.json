@@ -1,0 +1,174 @@
+{
+  "letter": "খ",
+  "words": [
+    {
+      "bpy": "কিসুরি",
+      "bn": "খিচুরি",
+      "en": "khichuri",
+      "sankrit": "खिच्चड़ी (Khiccaḍī)",
+      "romanization": ["Kisuri", "Khichuri"],
+      "similar-prons": ["কিচুরি", "খিসুরি"],
+      "meaning": [
+        "চাউল আর ডাইলর মিশ্রণ দিয়ে রান্না করা খাবার",
+        "এক ধরনের বাঙালি খাবার"
+      ],
+      "discovered": [],
+      "description": "কিসুরি একটা জনপ্রিয় বাঙালি খাবার যেটা চাউল আর ডাইল মিশিয়ে রান্না করা হয়। এতে সবজি আর মশলা দেওয়া হয়। সাধারণত বৃষ্টির দিনে বা অসুস্থ মানুষের জন্য এটা বানানো হয়।",
+      "exampleSentences": [
+        "আজ বৃষ্টি পড়তেছে, কিসুরি রান্দা করি",
+        "অসুখে কিসুরি খাওয়ার চেয়ে ভালো আর কিছু নাই",
+        "কিসুরি আর ডিম ভাজি দিয়ে খামু"
+      ],
+      "phonetic": {
+        "bpy": "ki-su-ri",
+        "bn": "khi-chu-ri",
+        "en": "ki-chu-ri"
+      },
+      "synonyms": ["খিচড়ি", "খিচ্চড়ি"],
+      "antonyms": [],
+      "IPA": "/kisuri/",
+      "origin": {
+        "সংস্কৃত": ["खिच्चड़ी"],
+        "meaning": "চাউল ডাইলের মিশ্রিত খাবার"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/kisuri.png"],
+      "voice": ["./voice/kisuri.wav"],
+      "cat": ["খাবার", "রান্না"],
+      "bpyDifferences": {
+        "1": ["কিসুরি বলে"],
+        "2": ["খিচুরি বলে"]
+      },
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "স্ত্রীলিঙ্গ",
+        "sandhi": "কিসুরি",
+        "number": { "singular": true, "plural": "কিসুরিগি" }
+      },
+      "usage": {
+        "commonness": "high",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam", "Bangladesh", "West Bengal"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/khichuri"],
+      "similarBn": ["খিচড়ি", "খিচ্চড়ি", "পায়েস"],
+      "similarEn": ["khichdi", "khichuri", "rice and lentil dish"],
+      "similarSangkrit": [
+        ["खिच्चड़ी", "Khiccaḍī"],
+        ["मिश्रित", "Miśrita"],
+        ["भात", "Bhāta"]
+      ]
+    },
+    {
+      "bpy": "খানি",
+      "bn": "একটু",
+      "en": "a little",
+      "sankrit": "खण्ड (Khaṇḍa)",
+      "romanization": ["Khani", "Ektu"],
+      "similar-prons": ["খানী", "খানে"],
+      "meaning": ["সামান্য পরিমাণ", "কিছুটা", "অল্প"],
+      "discovered": [],
+      "description": "খানি মানে খুব অল্প পরিমাণ বা সামান্য কিছু। এটা পরিমাণ বোঝাতে ব্যবহার করা হয়। বাঙালি কথায় এটা খুব সাধারণভাবে ব্যবহার করা হয়।",
+      "exampleSentences": ["খানি চা দেও", "খানি সময় দেও", "খানি লবণ দিও"],
+      "phonetic": {
+        "bpy": "kha-ni",
+        "bn": "ek-tu",
+        "en": "a li-tl"
+      },
+      "synonyms": ["একটু", "অল্প", "সামান্য", "কিছু", "কিঞ্চিৎ"],
+      "antonyms": ["অনেক", "বেশি", "প্রচুর"],
+      "IPA": "/kʰani/",
+      "origin": {
+        "সংস্কৃত": ["खण्ड"],
+        "meaning": "অংশ, টুকরা, সামান্য"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/khani.png"],
+      "voice": ["./voice/khani.wav"],
+      "cat": ["পরিমাপ", "বিশেষণ"],
+      "bpyDifferences": {
+        "1": ["খানি বলে"],
+        "2": ["একটু বলে"]
+      },
+      "grammar": {
+        "partOfSpeech": ["বিশেষণ", "ক্রিয়া বিশেষণ"],
+        "gender": "নিরপেক্ষ",
+        "sandhi": "খানি",
+        "number": { "singular": true, "plural": false }
+      },
+      "usage": {
+        "commonness": "very high",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam", "Bangladesh", "West Bengal"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/একটু"],
+      "similarBn": ["একটু", "সামান্য", "কিছু", "অল্প"],
+      "similarEn": ["a little", "a bit", "some", "slightly"],
+      "similarSangkrit": [
+        ["अल्प", "Alpa"],
+        ["किञ्चित्", "Kiñcit"],
+        ["लघु", "Laghu"],
+        ["स्वल्प", "Svalpa"]
+      ]
+    },
+    {
+      "bpy": "খমকর",
+      "bn": "একত্র",
+      "en": "together",
+      "sankrit": "एकत्र (Ekatra)",
+      "romanization": ["Khomokor"],
+      "similar-prons": ["খোমকর", "খমকোর"],
+      "meaning": ["একসাথে", "একত্রিত", "মিলিত"],
+      "discovered": [],
+      "description": "খমকর মানে একসাথে বা একত্রে। যখন কয়েকজন মানুষ বা কিছু জিনিস একসাথে থাকে তখন খমকর শব্দ ব্যবহার করা হয়। এটা সমবেত বা একত্রিত অবস্থা বোঝায়।",
+      "exampleSentences": [
+        "আমরা সবাই খমকর যামু",
+        "খমকর হয়ে কাম করলে তাড়াতাড়ি শেষ হবে",
+        "খমকর বসে খাওয়া ভালো"
+      ],
+      "phonetic": {
+        "bpy": "kho-mo-kor",
+        "bn": "e-ko-tro",
+        "en": "tu-ge-dher"
+      },
+      "synonyms": ["একত্র", "একসাথে", "একত্রিত", "সমবেত", "মিলিত"],
+      "antonyms": ["আলাদা", "পৃথক", "বিচ্ছিন্ন", "ভিন্ন"],
+      "IPA": "/kʰɔmɔkɔr/",
+      "origin": {
+        "সংস্কৃত": ["एकत्र"],
+        "meaning": "একসাথে, সমবেত"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/khomokor.png"],
+      "voice": ["./voice/khomokor.wav"],
+      "cat": ["সম্পর্ক", "অবস্থা"],
+      "bpyDifferences": {
+        "1": ["খমকর বলে"],
+        "2": ["একত্র বলে"]
+      },
+      "grammar": {
+        "partOfSpeech": ["ক্রিয়া বিশেষণ", "বিশেষণ"],
+        "gender": "নিরপেক্ষ",
+        "sandhi": "খমকর",
+        "number": { "singular": false, "plural": true }
+      },
+      "usage": {
+        "commonness": "medium",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam", "Bangladesh", "West Bengal"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/together"],
+      "similarBn": ["একত্র", "একসঙ্গে", "সমবেত", "মিলিত"],
+      "similarEn": ["together", "collectively", "jointly", "united"],
+      "similarSangkrit": [
+        ["एकत्र", "Ekatra"],
+        ["संयुक्त", "Saṃyukta"],
+        ["समवेत", "Samaveta"],
+        ["सम्मिलित", "Sammilita"]
+      ]
+    }
+  ]
+}

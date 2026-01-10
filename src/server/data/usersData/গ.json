@@ -1,0 +1,182 @@
+{
+  "letter": "গ",
+  "words": [
+    {
+      "bpy": "গিল",
+      "bn": "গিলে ফেলা",
+      "en": "swallow",
+      "sankrit": "गिल (Gila)",
+      "romanization": ["Gil", "Gile fela"],
+      "similar-prons": ["গীল", "গিলা"],
+      "meaning": [
+        "গলা দিয়ে খাবার বা পানি পেটে পাঠানো",
+        "গিলে খাওয়া",
+        "গলাধঃকরণ"
+      ],
+      "discovered": [],
+      "description": "গিল মানে কিছু গলা দিয়ে পেটে পাঠানো। খাবার চিবিয়ে বা পানি পিয়ে যখন পেটে পাঠানো হয় তখন এই শব্দ ব্যবহার করা হয়। এটা খাওয়ার একটা গুরুত্বপূর্ণ অংশ।",
+      "exampleSentences": [
+        "ওষুধটা গিলে খাও",
+        "খাবার গিলতে কষ্ট হচ্ছে",
+        "একবারে গিলে ফেলছে কিছু চিবাচ্ছে না"
+      ],
+      "phonetic": {
+        "bpy": "gil",
+        "bn": "gi-le fe-la",
+        "en": "swa-low"
+      },
+      "synonyms": ["গলাধঃকরণ করা", "গেলা", "খাওয়া"],
+      "antonyms": ["থুতু ফেলা", "বমি করা", "উগরানো"],
+      "IPA": "/gil/",
+      "origin": {
+        "সংস্কৃত": ["गिल"],
+        "meaning": "গলাধঃকরণ করা, গিলে ফেলা"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/gil.png"],
+      "voice": ["./voice/gil.wav"],
+      "cat": ["ক্রিয়া", "খাওয়া"],
+      "bpyDifferences": {
+        "1": ["গিল বলে"],
+        "2": ["গিলে ফেলা বলে"]
+      },
+      "grammar": {
+        "partOfSpeech": ["ক্রিয়া"],
+        "gender": "নিরপেক্ষ",
+        "sandhi": "গিল",
+        "number": { "singular": true, "plural": false }
+      },
+      "usage": {
+        "commonness": "high",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam", "Bangladesh", "West Bengal"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/swallow"],
+      "similarBn": ["গেলা", "গলাধঃকরণ", "খাওয়া"],
+      "similarEn": ["swallow", "gulp", "ingest"],
+      "similarSangkrit": [
+        ["गिल", "Gila"],
+        ["ग्रस", "Grasa"],
+        ["निगल", "Nigala"],
+        ["पान", "Pāna"]
+      ]
+    },
+    {
+      "bpy": "গজ",
+      "bn": "উপর",
+      "en": "above",
+      "sankrit": "उपरि (Upari)",
+      "romanization": ["Goj", "Upor"],
+      "similar-prons": ["গোজ", "গজা"],
+      "meaning": ["উপরে", "উচ্চতায়", "ওপরের দিকে"],
+      "discovered": [],
+      "description": "গজ মানে উপরে বা উপরের দিকে। কোনো কিছুর উপরিভাগ বা উচ্চ স্থান বোঝাতে এই শব্দ ব্যবহার করা হয়। এটা দিক নির্দেশক শব্দ।",
+      "exampleSentences": ["গজে তুলে রাখো", "গজের তাকে কি আছে", "গজে উঠে দেখো"],
+      "phonetic": {
+        "bpy": "goj",
+        "bn": "u-por",
+        "en": "a-bav"
+      },
+      "synonyms": ["উপরে", "ওপরে", "উচ্চে", "শীর্ষে"],
+      "antonyms": ["নিচে", "তলে", "অধঃ"],
+      "IPA": "/gɔdʒ/",
+      "origin": {
+        "সংস্কৃত": ["उपरि"],
+        "meaning": "উপরে, উচ্চতায়"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/goj.png"],
+      "voice": ["./voice/goj.wav"],
+      "cat": ["দিক", "স্থান"],
+      "bpyDifferences": {
+        "1": ["গজ বলে"],
+        "2": ["উপর বলে"]
+      },
+      "grammar": {
+        "partOfSpeech": ["বিশেষণ", "অব্যয়"],
+        "gender": "নিরপেক্ষ",
+        "sandhi": "গজ",
+        "number": { "singular": true, "plural": false }
+      },
+      "usage": {
+        "commonness": "very high",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam", "Bangladesh", "West Bengal"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/above"],
+      "similarBn": ["উপরে", "ওপরে", "উর্ধ্বে", "শীর্ষে"],
+      "similarEn": ["above", "up", "over", "top"],
+      "similarSangkrit": [
+        ["उपरि", "Upari"],
+        ["ऊर्ध्व", "Ūrdhva"],
+        ["उच्च", "Ucca"],
+        ["शीर्ष", "Śīrṣa"]
+      ]
+    },
+    {
+      "bpy": "গুসা",
+      "bn": "গুছানো",
+      "en": "organize",
+      "sankrit": "गुच्छ (Guccha)",
+      "romanization": ["Gusa", "Guchhano"],
+      "similar-prons": ["গুছা", "গুসানো"],
+      "meaning": ["সাজানো", "গোছানো", "ঠিকঠাক করা", "সুশৃঙ্খল করা"],
+      "discovered": [],
+      "description": "গুসা মানে কোনো কিছু সাজিয়ে গুছিয়ে রাখা বা সুন্দর করে সাজানো। ঘরবাড়ি, জিনিসপত্র বা কাজকর্ম যখন সুশৃঙ্খলভাবে করা হয় তখন এই শব্দ ব্যবহার করা হয়।",
+      "exampleSentences": [
+        "ঘরডা গুসা দাও",
+        "কামগুলা গুসায়ে শেষ করো",
+        "গুসায়ে রাখলে খুঁজে পাওয়া সহজ হয়"
+      ],
+      "phonetic": {
+        "bpy": "gu-sa",
+        "bn": "gu-chha-no",
+        "en": "or-ga-naiz"
+      },
+      "synonyms": [
+        "গুছানো",
+        "সাজানো",
+        "গোছানো",
+        "সুশৃঙ্খল করা",
+        "ব্যবস্থা করা"
+      ],
+      "antonyms": ["ছড়ানো", "এলোমেলো করা", "বিশৃঙ্খল করা"],
+      "IPA": "/gusa/",
+      "origin": {
+        "সংস্কৃত": ["गुच्छ"],
+        "meaning": "গুচ্ছ, সংগ্রহ, সাজানো"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/gusa.png"],
+      "voice": ["./voice/gusa.wav"],
+      "cat": ["ক্রিয়া", "ব্যবস্থাপনা"],
+      "bpyDifferences": {
+        "1": ["গুসা বলে"],
+        "2": ["গুছানো বলে"]
+      },
+      "grammar": {
+        "partOfSpeech": ["ক্রিয়া"],
+        "gender": "নিরপেক্ষ",
+        "sandhi": "গুসা",
+        "number": { "singular": true, "plural": false }
+      },
+      "usage": {
+        "commonness": "high",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam", "Bangladesh", "West Bengal"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/organize"],
+      "similarBn": ["গুছানো", "সাজানো", "গোছানো", "সংগঠিত করা"],
+      "similarEn": ["organize", "arrange", "tidy up", "sort out"],
+      "similarSangkrit": [
+        ["व्यवस्थित", "Vyavasthita"],
+        ["सुसज्जित", "Susajjita"],
+        ["गुच्छित", "Gucchita"],
+        ["संकलित", "Saṃkalita"]
+      ]
+    }
+  ]
+}

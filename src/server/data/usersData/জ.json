@@ -1,0 +1,390 @@
+{
+  "letter": "জ",
+  "words": [
+    {
+      "bpy": "জাকা",
+      "bn": "ঝুড়ি",
+      "en": "basket",
+      "sankrit": "जान्का (Jānka)",
+      "romanization": ["Jaka", "Jhaka"],
+      "similar-prons": ["ঝাকা", "ঝাখা"],
+      "meaning": ["হুরকা পাত্রগো", "হুরকাঙ পাত্রগো"],
+      "discovered": [],
+      "description": "জাকা-ওয়াই এগো স্ত্রী বাচক ওয়াই আগো। এরে ওয়াই এগো আমি নানান অর্থে ইকরা ইকরি কররাঙ। ",
+      "exampleSentences": ["জাকাগো মুরগত দে", "জাকাগোনো নাজিগা"],
+      "phonetic": {
+        "bpy": "jaka"
+      },
+      "synonyms": ["পেনি", "পেই", "কতুরা", "তাপু"],
+      "antonyms": [],
+      "IPA": "/d͡ʒɑkɑ/",
+      "origin": {
+        "সংস্কৃত": ["জান্‌কা"],
+        "meaning": "ছোট থলে"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/jhaka.png"],
+      "voice": ["./voice/jhaka.wav"],
+      "cat": ["পাত্র"],
+      "bpyDifferences": {
+        "1": ["লাড়ানি", "না জাকারি"],
+        "2": ["জানানি", "না জানি"]
+      },
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "স্ত্রী",
+        "sandhi": "জা+কা",
+        "number": { "singular": true, "plural": "জাকাগি" }
+      },
+      "usage": {
+        "commonness": "high",
+        "usageMean": "positive",
+        "region": ["Tripura", "Assam", "Bangladesh"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/basket"],
+      "similarBn": ["থলি", "ডুলি", "টোব", "বস্তা"],
+      "similarEn": ["basket", "bag", "container", "sack"],
+      "similarSangkrit": [
+        ["जालिका", "Jālika"],
+        ["कूपिका", "Kūpika"],
+        ["पेटिका", "KūPeṭikāpika"],
+        ["झञ्जरी", "Jhañjarī"]
+      ]
+    },
+    {
+      "bpy": "ডুলি",
+      "bn": "ডুলি",
+      "en": "basket",
+      "sankrit": "डुली (Ḍulī)",
+      "romanization": ["Duli"],
+      "similar-prons": ["ডুলি", "ডুলিা"],
+      "meaning": ["ছোট ঝুড়ি", "বাঁশের পাত্র"],
+      "discovered": [],
+      "description": "ডুলি সাধারণত বাঁশ বা বেত দিয়ে তৈরি ছোট ঝুড়ি।",
+      "exampleSentences": ["ডুলিগো ফল দে", "ডুলিগোনো ভাঙিগা"],
+      "phonetic": {
+        "bpy": "du-li",
+        "bn": "du-li",
+        "en": "basket"
+      },
+      "synonyms": ["জাকা", "পেনি"],
+      "antonyms": [],
+      "IPA": "/ɖuli/",
+      "origin": {
+        "সংস্কৃত": ["डुली"],
+        "meaning": "বহনযোগ্য পাত্র"
+      },
+      "madoi": true,
+      "rajar": false,
+      "img": ["./imgs/duli.png"],
+      "voice": ["./voice/duli.wav"],
+      "cat": ["পাত্র"],
+      "bpyDifferences": {
+        "1": ["ডুলিগি", "না ডুলি"],
+        "2": ["ডুলিনো", "না ডুলে"]
+      },
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "স্ত্রী",
+        "sandhi": "ডু+লি",
+        "number": { "singular": true, "plural": "ডুলিগি" }
+      },
+      "usage": {
+        "commonness": "high",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam"]
+      },
+      "references": [],
+      "similarBn": ["ঝুড়ি", "থলে"],
+      "similarEn": ["basket", "container"],
+      "similarSangkrit": [["पेटिका", "Peṭikā"]]
+    },
+    {
+      "bpy": "থলি",
+      "bn": "থলে",
+      "en": "bag",
+      "sankrit": "थैली (Thailī)",
+      "romanization": ["Tholi"],
+      "similar-prons": ["থলি", "থোলি"],
+      "meaning": ["কাপড়ের পাত্র"],
+      "discovered": [],
+      "description": "থলি সাধারণত কাপড় বা চামড়া দিয়ে তৈরি।",
+      "exampleSentences": ["থলিগো চাল দে"],
+      "phonetic": {
+        "bpy": "tho-li",
+        "bn": "tho-le",
+        "en": "bag"
+      },
+      "synonyms": ["ব্যাগ"],
+      "antonyms": [],
+      "IPA": "/t̪ʰoli/",
+      "origin": {
+        "সংস্কৃত": ["थैली"],
+        "meaning": "ছোট ব্যাগ"
+      },
+      "madoi": false,
+      "rajar": true,
+      "img": ["./imgs/tholi.png"],
+      "voice": ["./voice/tholi.wav"],
+      "cat": ["পাত্র"],
+      "bpyDifferences": {},
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "স্ত্রী",
+        "sandhi": "থ+লি",
+        "number": { "singular": true, "plural": "থলিগি" }
+      },
+      "usage": {
+        "commonness": "high",
+        "usageMean": "neutral",
+        "region": ["Bangladesh"]
+      },
+      "references": [],
+      "similarBn": ["ডুলি", "ঝুড়ি"],
+      "similarEn": ["bag", "sack"],
+      "similarSangkrit": [["कोश", "Kośa"]]
+    },
+    {
+      "bpy": "কলসি",
+      "bn": "কলস",
+      "en": "water pot",
+      "sankrit": "कलश (Kalaśa)",
+      "romanization": ["Kolosi"],
+      "similar-prons": ["কলসি"],
+      "meaning": ["জল রাখার পাত্র"],
+      "discovered": [],
+      "description": "কলসি মাটির বা ধাতুর জল রাখার পাত্র।",
+      "exampleSentences": ["কলসিগো পানি দে"],
+      "phonetic": {
+        "bpy": "ko-lo-si",
+        "bn": "ko-los",
+        "en": "pot"
+      },
+      "synonyms": ["ঘড়া"],
+      "antonyms": [],
+      "IPA": "/kolosi/",
+      "origin": {
+        "সংস্কৃত": ["कलश"],
+        "meaning": "পবিত্র পাত্র"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/kolosi.png"],
+      "voice": ["./voice/kolosi.wav"],
+      "cat": ["পাত্র"],
+      "bpyDifferences": {},
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "স্ত্রী",
+        "sandhi": "কল+সি",
+        "number": { "singular": true, "plural": "কলসিগি" }
+      },
+      "usage": {
+        "commonness": "high",
+        "usageMean": "positive",
+        "region": ["Tripura", "Bangladesh"]
+      },
+      "references": [],
+      "similarBn": ["ঘড়া"],
+      "similarEn": ["pot", "jar"],
+      "similarSangkrit": [["घट", "Ghaṭa"]]
+    },
+    {
+      "bpy": "হাঁড়ি",
+      "bn": "হাঁড়ি",
+      "en": "cooking pot",
+      "sankrit": "हाण्डी (Hāṇḍī)",
+      "romanization": ["Hari"],
+      "similar-prons": ["হারি"],
+      "meaning": ["রান্নার পাত্র"],
+      "discovered": [],
+      "description": "হাঁড়ি রান্নার কাজে ব্যবহৃত হয়।",
+      "exampleSentences": ["হাঁড়িগো ভাত রাঁধ"],
+      "phonetic": {
+        "bpy": "ha-ri",
+        "bn": "ha-ri",
+        "en": "pot"
+      },
+      "synonyms": ["পাতিল"],
+      "antonyms": [],
+      "IPA": "/ɦaɽi/",
+      "origin": {
+        "সংস্কৃত": ["हाण्डी"],
+        "meaning": "রান্নার পাত্র"
+      },
+      "madoi": true,
+      "rajar": false,
+      "img": ["./imgs/hari.png"],
+      "voice": ["./voice/hari.wav"],
+      "cat": ["পাত্র"],
+      "bpyDifferences": {},
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "স্ত্রী",
+        "sandhi": "হাঁ+ড়ি",
+        "number": { "singular": true, "plural": "হাঁড়িগি" }
+      },
+      "usage": {
+        "commonness": "high",
+        "usageMean": "neutral",
+        "region": ["Assam", "Bangladesh"]
+      },
+      "references": [],
+      "similarBn": ["পাতিল"],
+      "similarEn": ["pot"],
+      "similarSangkrit": [["पाकपात्र", "Pākapātra"]]
+    },
+    {
+      "bpy": "পাতিল",
+      "bn": "পাতিল",
+      "en": "pan",
+      "sankrit": "पात्र (Pātra)",
+      "romanization": ["Patil"],
+      "similar-prons": ["পাতিল"],
+      "meaning": ["রান্নার পাত্র"],
+      "discovered": [],
+      "description": "পাতিল ধাতুর তৈরি রান্নার পাত্র।",
+      "exampleSentences": ["পাতিলগো তরকারি দে"],
+      "phonetic": {
+        "bpy": "pa-til",
+        "bn": "pa-til",
+        "en": "pan"
+      },
+      "synonyms": ["হাঁড়ি"],
+      "antonyms": [],
+      "IPA": "/pat̪il/",
+      "origin": {
+        "সংস্কৃত": ["पात्र"],
+        "meaning": "ধারক"
+      },
+      "madoi": false,
+      "rajar": true,
+      "img": ["./imgs/patil.png"],
+      "voice": ["./voice/patil.wav"],
+      "cat": ["পাত্র"],
+      "bpyDifferences": {},
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "স্ত্রী",
+        "sandhi": "পা+তিল",
+        "number": { "singular": true, "plural": "পাতিলগি" }
+      },
+      "usage": {
+        "commonness": "medium",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam"]
+      },
+      "references": [],
+      "similarBn": ["হাঁড়ি"],
+      "similarEn": ["pan", "pot"],
+      "similarSangkrit": [["भाजन", "Bhājana"]]
+    },
+    {
+      "bpy": "জলপান",
+      "bn": "নাস্তা",
+      "en": "breakfast",
+      "sankrit": "जलपान (Jalapāna)",
+      "romanization": ["Jolopan", "Zalopan"],
+      "similar-prons": ["জলপানা", "জলপাইন"],
+      "meaning": ["সকালর খাবার", "হালকা খাওয়ান"],
+      "discovered": [],
+      "description": "জলপান মানে সকালবেলার হালকা খাবার বা নাস্তা। এটা একটা প্রাচীন শব্দ যেটা এখনো গ্রামাঞ্চলে ব্যবহার করা হয়।",
+      "exampleSentences": ["সকালে জলপান করিলি?", "জলপানর লাইগা রুটি আছে"],
+      "phonetic": {
+        "bpy": "jo-lo-pan",
+        "bn": "nas-ta",
+        "en": "brek-fast"
+      },
+      "synonyms": ["নাস্তা", "কালাইজ", "হালকা খাওয়ান"],
+      "antonyms": ["ভাত", "পেট ভরা খাওয়ান"],
+      "IPA": "/d͡ʒɔlɔpan/",
+      "origin": {
+        "সংস্কৃত": ["জল+পান"],
+        "meaning": "জল পান করা বা হালকা আহার"
+      },
+      "madoi": "পানি পি",
+      "rajar": true,
+      "img": ["./imgs/jolopan.png"],
+      "voice": ["./voice/jolopan.wav"],
+      "cat": ["খাবার"],
+      "bpyDifferences": {
+        "1": ["খাইলুঙ", "না খাইসি"],
+        "2": ["দিলুঙ", "না দিসি"]
+      },
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "পুংলিঙ্গ",
+        "sandhi": "জল+পান",
+        "number": { "singular": true, "plural": "জলপানগি" }
+      },
+      "usage": {
+        "commonness": "medium",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam", "Bangladesh", "West Bengal"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/breakfast"],
+      "similarBn": ["নাস্তা", "জলযোগ", "প্রাতরাশ"],
+      "similarEn": ["breakfast", "morning meal", "brunch"],
+      "similarSangkrit": [
+        ["प्रातराश", "Prātarāśa"],
+        ["जलपानक", "Jalapānaka"],
+        ["स्वल्पाहार", "Svalpāhāra"],
+        ["अल्पाहार", "Alpāhāra"]
+      ]
+    },
+    {
+      "bpy": "জাম",
+      "bn": "কালো জাম",
+      "en": "black plum",
+      "sankrit": "जम्बु (Jambu)",
+      "romanization": ["Jam", "Zam"],
+      "similar-prons": ["জামু", "জাম্বু"],
+      "meaning": ["এক ধরনর ফল", "কালো রঙর মিষ্টি ফল"],
+      "discovered": [],
+      "description": "জাম একটা গ্রীষ্মকালীন ফল যেটা কালো বা বেগুনি রঙের হয়। এটা মিষ্টি এবং রসালো ফল।",
+      "exampleSentences": ["জাম গাছত উঠি ফল পারিলুঙ", "জামর রঙ হাতত লাগিগেসে"],
+      "phonetic": {
+        "bpy": "jam",
+        "bn": "jam",
+        "en": "blak plam"
+      },
+      "synonyms": ["কালো জাম", "জাম ফল", "জামবুরা"],
+      "antonyms": [],
+      "IPA": "/d͡ʒam/",
+      "origin": {
+        "সংস্কৃত": ["জম্বু"],
+        "meaning": "জাম গাছ বা ফল"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/jam.png"],
+      "voice": ["./voice/jam.wav"],
+      "cat": ["ফল", "প্রকৃতি"],
+      "bpyDifferences": {
+        "1": ["খাইলুঙ", "না খাইসি"],
+        "2": ["পারিলুঙ", "না পারিসি"]
+      },
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "পুংলিঙ্গ",
+        "sandhi": "জাম",
+        "number": { "singular": true, "plural": "জামগি" }
+      },
+      "usage": {
+        "commonness": "high",
+        "usageMean": "positive",
+        "region": ["Tripura", "Assam", "Bangladesh", "West Bengal"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/jamun"],
+      "similarBn": ["কালো জাম", "জামরুল", "জম্বুরা"],
+      "similarEn": ["black plum", "jamun", "java plum"],
+      "similarSangkrit": [
+        ["जम्बूफल", "Jambūphala"],
+        ["महाजम्बु", "Mahājambu"],
+        ["फलेन्द्र", "Phalendra"],
+        ["राजफल", "Rājaphala"]
+      ]
+    }
+  ]
+}

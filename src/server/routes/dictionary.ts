@@ -1,5 +1,7 @@
 // Location: backend/src/routes/dictionary.ts
 import { Router, Request, Response } from 'express';
+import fs from 'fs/promises';
+import path from 'path';
 import {
     getAllWords,
     searchWordInAlphabets,
@@ -213,6 +215,72 @@ router.get('/autocomplete', (req: Request, res: Response) => {
         res.status(500).json({
             success: false,
             error: 'Autocomplete failed',
+            details: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
+});
+
+/**
+ * POST /api/dictionary/add-word
+ * Add a new word to the dictionary (saves to usersData)
+ */
+router.post('/add-word', async (req: Request, res: Response) => {
+    const { letter, wordData } = req.body;
+
+    if (!letter || !wordData) {
+        return res.status(400).json({
+            success: false,
+            error: 'Letter and word data are required'
+        });
+    }
+
+    try {
+        // Path to usersData directory
+        const usersDataDir = path.join(__dirname, '../data/usersData');
+        const filePath = path.join(usersDataDir, `${letter}.json`);
+
+        // Ensure usersData directory exists
+        try {
+            await fs.access(usersDataDir);
+        } catch {
+            await fs.mkdir(usersDataDir, { recursive: true });
+        }
+
+        // Read existing data or create new structure
+        let fileData: any;
+        try {
+            const content = await fs.readFile(filePath, 'utf-8');
+            fileData = JSON.parse(content);
+        } catch {
+            // File doesn't exist, create new structure
+            fileData = {
+                letter: letter,
+                words: []
+            };
+        }
+
+        // Add new word with timestamp
+        const newWord = {
+            ...wordData,
+            addedAt: new Date().toISOString(),
+            status: 'pending' // pending review
+        };
+
+        fileData.words.push(newWord);
+
+        // Write back to file
+        await fs.writeFile(filePath, JSON.stringify(fileData, null, 2), 'utf-8');
+
+        res.json({
+            success: true,
+            message: 'Word added successfully and pending review',
+            data: newWord
+        });
+    } catch (error) {
+        console.error('Error adding word:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to add word',
             details: error instanceof Error ? error.message : 'Unknown error'
         });
     }

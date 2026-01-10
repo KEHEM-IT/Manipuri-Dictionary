@@ -1,0 +1,172 @@
+{
+  "letter": "ক",
+  "words": [
+    {
+      "bpy": "কপাল",
+      "bn": "কপাল",
+      "en": "forehead",
+      "sankrit": "कपाल (Kapāla)",
+      "romanization": ["Kopal", "Kapal"],
+      "similar-prons": ["কাপাল", "কোপাল"],
+      "meaning": ["কপালর হাড্ডি", "ভাগ্য", "কপালর অংশ"],
+      "discovered": [],
+      "description": "কপাল মানে মাথার সামনের অংশ। এছাড়াও ভাগ্য বোঝাতেও এই শব্দ ব্যবহার করা হয়। কপাল ভালো বা খারাপ হতে পারে।",
+      "exampleSentences": [
+        "মুর কপাল খারাপ",
+        "কপালত তিলক দিলে",
+        "কপালে কি লেখা আছে কেউ জানে না"
+      ],
+      "phonetic": {
+        "bpy": "co paal",
+        "bn": "co paal",
+        "en": "for-hed"
+      },
+      "synonyms": ["ললাট", "ভাগ্য", "কিসমত", "মাথার অংশ"],
+      "antonyms": [],
+      "IPA": "/kɔpal/",
+      "origin": {
+        "সংস্কৃত": ["কপাল"],
+        "meaning": "মাথার সামনের হাড্ডি, ভাগ্য"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/kopal.png"],
+      "voice": ["./voice/kopal.wav"],
+      "cat": ["শরীর", "ভাগ্য"],
+      "bpyDifferences": {
+        "1": ["ভালো", "না খারাপ"],
+        "2": ["জ্বলে", "না জ্বলে"]
+      },
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "পুংলিঙ্গ",
+        "sandhi": "কপাল",
+        "number": { "singular": true, "plural": "কপালগি" }
+      },
+      "usage": {
+        "commonness": "high",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam", "Bangladesh", "West Bengal"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/forehead"],
+      "similarBn": ["ললাট", "কপোল", "ভাগ্য"],
+      "similarEn": ["forehead", "fate", "destiny", "fortune"],
+      "similarSangkrit": [
+        ["ललाट", "Lalāṭa"],
+        ["भाग्य", "Bhāgya"],
+        ["भाल", "Bhāla"],
+        ["मस्तक", "Mastaka"]
+      ]
+    },
+    {
+      "bpy": "কিতা",
+      "bn": "কী",
+      "en": "what",
+      "sankrit": "किम् (Kim)",
+      "romanization": ["Kita", "Kitha"],
+      "similar-prons": ["কি", "কিথা", "কিয়া"],
+      "meaning": ["কী জিনিস", "কোন জিনিস", "প্রশ্নবোধক শব্দ"],
+      "discovered": [],
+      "description": "কিতা একটা প্রশ্নবোধক শব্দ যেটা 'কী' বা 'what' এর অর্থে ব্যবহার করা হয়। এটা বিষয়পুর জিজ্ঞাসা করার সময় ব্যবহার হয়।",
+      "exampleSentences": ["কিতা করতাসেন?", "এটা কিতা?", "কিতা খাবা?"],
+      "phonetic": {
+        "bpy": "ki-ta",
+        "bn": "ki",
+        "en": "wot"
+      },
+      "synonyms": ["কী", "কোনটা", "কোন জিনিস"],
+      "antonyms": [],
+      "IPA": "/kita/",
+      "origin": {
+        "সংস্কৃত": ["কিম্"],
+        "meaning": "কী, কোন জিনিস"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/kita.png"],
+      "voice": ["./voice/kita.wav"],
+      "cat": ["প্রশ্নবোধক", "ব্যাকরণ"],
+      "bpyDifferences": {
+        "1": ["কিতা বললি", "না কিতা কইলি"],
+        "2": ["কিতা হইল", "না কিতা হইসে"]
+      },
+      "grammar": {
+        "partOfSpeech": ["সর্বনাম", "প্রশ্নবোধক"],
+        "gender": "নপুংসক",
+        "sandhi": "কি+তা",
+        "number": { "singular": true, "plural": false }
+      },
+      "usage": {
+        "commonness": "very high",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam", "Bangladesh"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/what"],
+      "similarBn": ["কী", "কিসে", "কোনটা"],
+      "similarEn": ["what", "which", "what thing"],
+      "similarSangkrit": [
+        ["किम्", "Kim"],
+        ["कः", "Kaḥ"],
+        ["कथम्", "Katham"],
+        ["को", "Ko"]
+      ]
+    },
+    {
+      "bpy": "কাম",
+      "bn": "কাজ",
+      "en": "work",
+      "sankrit": "कर्म (Karma)",
+      "romanization": ["Kam", "Kaam"],
+      "similar-prons": ["কামো", "কাম্মা"],
+      "meaning": ["কাজ", "কর্ম", "কাম কাজ"],
+      "discovered": [],
+      "description": "কাম মানে কাজ বা কর্ম। যেকোনো ধরনের কাজকর্ম বোঝাতে এই শব্দ ব্যবহার করা হয়। এটা দৈনন্দিন জীবনে খুব বেশি ব্যবহৃত হয়।",
+      "exampleSentences": [
+        "কাম করতে যামুগা",
+        "তুমার কিতা কাম?",
+        "কামর বিনিময়ত টাকা পাইলুঙ"
+      ],
+      "phonetic": {
+        "bpy": "kam",
+        "bn": "kaj",
+        "en": "work"
+      },
+      "synonyms": ["কাজ", "কর্ম", "কামকাজ", "ধান্দা"],
+      "antonyms": ["বিশ্রাম", "আরাম", "নিষ্কর্ম"],
+      "IPA": "/kam/",
+      "origin": {
+        "সংস্কৃত": ["কর্ম"],
+        "meaning": "কাজ, ক্রিয়া, কর্ম"
+      },
+      "madoi": true,
+      "rajar": true,
+      "img": ["./imgs/kam.png"],
+      "voice": ["./voice/kam.wav"],
+      "cat": ["কর্ম", "কাজ"],
+      "bpyDifferences": {
+        "1": ["করলুঙ", "না করিসি"],
+        "2": ["পাইলুঙ", "না পাইসি"]
+      },
+      "grammar": {
+        "partOfSpeech": ["বিশেষ্য"],
+        "gender": "পুংলিঙ্গ",
+        "sandhi": "কাম",
+        "number": { "singular": true, "plural": "কামগি" }
+      },
+      "usage": {
+        "commonness": "very high",
+        "usageMean": "neutral",
+        "region": ["Tripura", "Assam", "Bangladesh", "West Bengal"]
+      },
+      "references": ["https://en.wiktionary.org/wiki/work"],
+      "similarBn": ["কাজ", "কর্ম", "কামকাজ", "ক্রিয়া"],
+      "similarEn": ["work", "task", "job", "labor"],
+      "similarSangkrit": [
+        ["कर्म", "Karma"],
+        ["कार्य", "Kārya"],
+        ["क्रिया", "Kriyā"],
+        ["व्यापार", "Vyāpāra"]
+      ]
+    }
+  ]
+}
