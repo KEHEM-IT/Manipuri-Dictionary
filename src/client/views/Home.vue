@@ -1,4 +1,4 @@
-<!-- frontend/src/views/Home.vue -->
+<!-- src/client/views/Home.vue -->
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import SearchBox from '../components/SearchBox.vue';

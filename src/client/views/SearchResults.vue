@@ -1,4 +1,4 @@
-<!-- frontend/src/views/SearchResults.vue -->
+<!-- src/client/views/SearchResults.vue -->
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';

@@ -1,4 +1,4 @@
-<!-- frontend/src/views/WordDetails.vue -->
+<!-- src/client/views/WordDetails.vue -->
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
