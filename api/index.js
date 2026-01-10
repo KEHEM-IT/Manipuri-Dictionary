@@ -236,6 +236,90 @@ app.get('/api/dictionary/alphabet/:letter', (req, res) => {
     }
 });
 
+// Autocomplete endpoint for word suggestions
+app.get('/api/dictionary/autocomplete', (req, res) => {
+    try {
+        const { term, language, limit = 10 } = req.query;
+        
+        if (!term || !language) {
+            return res.status(400).json({
+                success: false,
+                error: 'Term and language are required'
+            });
+        }
+        
+        const searchTerm = term.trim().toLowerCase();
+        const maxResults = parseInt(limit) || 10;
+        let results = [];
+        
+        if (language === 'bpy') {
+            // For Bishnupriya, search in the alphabet file of the first character
+            const firstChar = term.charAt(0);
+            const fileName = ALPHABET_MAP[firstChar];
+            
+            if (fileName) {
+                const words = loadAlphabetFile(fileName);
+                results = words.filter(word => 
+                    word.bpy && word.bpy.toLowerCase().startsWith(searchTerm)
+                );
+            }
+            
+            // If not enough results, search other files
+            if (results.length < maxResults) {
+                Object.values(ALPHABET_MAP).forEach(fileName => {
+                    if (results.length >= maxResults) return;
+                    const words = loadAlphabetFile(fileName);
+                    const matches = words.filter(word => 
+                        word.bpy && 
+                        word.bpy.toLowerCase().includes(searchTerm) &&
+                        !results.some(r => r.id === word.id)
+                    );
+                    results.push(...matches);
+                });
+            }
+        } else {
+            // For Bengali and English, search all files
+            Object.values(ALPHABET_MAP).forEach(fileName => {
+                if (results.length >= maxResults) return;
+                const words = loadAlphabetFile(fileName);
+                const matches = words.filter(word => {
+                    const value = word[language];
+                    return value && value.toLowerCase().includes(searchTerm);
+                });
+                results.push(...matches);
+            });
+        }
+        
+        // Sort by relevance (starts with search term first)
+        results.sort((a, b) => {
+            const aValue = (a[language] || '').toLowerCase();
+            const bValue = (b[language] || '').toLowerCase();
+            const aStarts = aValue.startsWith(searchTerm);
+            const bStarts = bValue.startsWith(searchTerm);
+            
+            if (aStarts && !bStarts) return -1;
+            if (!aStarts && bStarts) return 1;
+            return aValue.localeCompare(bValue);
+        });
+        
+        // Limit results
+        results = results.slice(0, maxResults);
+        
+        res.json({
+            success: true,
+            count: results.length,
+            searchTerm: term,
+            language: language,
+            data: results
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
 app.use((req, res) => {
     res.status(404).json({
         success: false,
