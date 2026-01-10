@@ -163,4 +163,59 @@ router.get('/alphabet/:letter', (req: Request, res: Response) => {
     }
 });
 
+/**
+ * GET /api/dictionary/autocomplete?term=জ&language=bpy&limit=10
+ * Get autocomplete suggestions based on partial input
+ */
+router.get('/autocomplete', (req: Request, res: Response) => {
+    const { term, language, limit = '10' } = req.query;
+
+    if (!term || !language) {
+        return res.status(400).json({
+            success: false,
+            error: 'Term and language are required'
+        });
+    }
+
+    const lang = language as 'bpy' | 'bn' | 'en';
+
+    if (!['bpy', 'bn', 'en'].includes(lang)) {
+        return res.status(400).json({
+            success: false,
+            error: 'Language must be one of: bpy, bn, en'
+        });
+    }
+
+    const trimmedTerm = (term as string).trim().toLowerCase();
+
+    if (!trimmedTerm) {
+        return res.json({
+            success: true,
+            count: 0,
+            data: []
+        });
+    }
+
+    try {
+        const results = searchWordInAlphabets(trimmedTerm, lang);
+        const limitNum = parseInt(limit as string, 10);
+        const limitedResults = results.slice(0, limitNum);
+
+        res.json({
+            success: true,
+            count: limitedResults.length,
+            searchTerm: trimmedTerm,
+            language: lang,
+            data: limitedResults
+        });
+    } catch (error) {
+        console.error('Autocomplete error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Autocomplete failed',
+            details: error instanceof Error ? error.message : 'Unknown error'
+        });
+    }
+});
+
 export default router;

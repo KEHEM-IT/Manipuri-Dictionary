@@ -1,9 +1,10 @@
 <!-- src/client/components/SearchBox.vue -->
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { Language } from '../types';
 import { useVoiceSearch } from '../composables/useVoiceSearch';
+import { useAutocomplete } from '../composables/useAutocomplete';
 
 // STATE
 const router = useRouter();
@@ -14,9 +15,14 @@ const typedText = ref('');
 const currentHintIndex = ref(0);
 const inputRef = ref<HTMLInputElement | null>(null);
 const hasError = ref(false);
+const showSuggestions = ref(false);
+const selectedSuggestionIndex = ref(-1);
 
 // VOICE SEARCH
 const { isListening, transcript, isSupported, initVoiceRecognition, startListening, stopListening, setLanguage } = useVoiceSearch();
+
+// AUTOCOMPLETE
+const { suggestions, loading: suggestionsLoading, fetchSuggestions, clearSuggestions } = useAutocomplete();
 
 // CONSTANTS
 const hintWords: Record<Language, string[]> = {
@@ -27,6 +33,11 @@ const hintWords: Record<Language, string[]> = {
 
 let typingInterval: any = null;
 let erasingTimeout: any = null;
+
+// COMPUTED
+const noSuggestionsFound = computed(() => {
+    return searchTerm.value.trim().length > 0 && suggestions.value.length === 0 && !suggestionsLoading.value;
+});
 
 // VOICE RECOGNITION HANDLER
 const handleVoiceSearch = () => {
@@ -120,6 +131,38 @@ const startTypingAnimation = () => {
     typingInterval = setInterval(typeChar, 100);
 };
 
+// AUTOCOMPLETE FUNCTIONS
+const handleInputChange = () => {
+    selectedSuggestionIndex.value = -1;
+    if (searchTerm.value.trim()) {
+        showSuggestions.value = true;
+        fetchSuggestions(searchTerm.value, selectedLanguage.value, 10);
+    } else {
+        showSuggestions.value = false;
+        clearSuggestions();
+    }
+};
+
+const selectSuggestion = (suggestion: any) => {
+    const wordText = suggestion.word?.[selectedLanguage.value] || suggestion.word?.bpy || '';
+    searchTerm.value = wordText;
+    showSuggestions.value = false;
+    clearSuggestions();
+    
+    // Navigate to word detail page
+    router.push({
+        name: 'WordDetail',
+        params: { identifier: suggestion.id }
+    });
+};
+
+const handleAddWord = () => {
+    router.push({
+        name: 'AddWord',
+        query: { term: searchTerm.value, lang: selectedLanguage.value }
+    });
+};
+
 // SEARCH
 const handleSearch = () => {
     if (!searchTerm.value.trim()) {
@@ -128,6 +171,8 @@ const handleSearch = () => {
         return;
     }
     hasError.value = false;
+    showSuggestions.value = false;
+    clearSuggestions();
     router.push({ name: 'SearchResults', query: { q: searchTerm.value, lang: selectedLanguage.value } });
 };
 
@@ -137,7 +182,40 @@ const handleKeyDown = (event: KeyboardEvent) => {
         event.preventDefault();
         return;
     }
-    if (event.key === 'Enter') handleSearch();
+    
+    // Handle arrow keys for suggestion navigation
+    if (showSuggestions.value && suggestions.value.length > 0) {
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            selectedSuggestionIndex.value = Math.min(
+                selectedSuggestionIndex.value + 1,
+                suggestions.value.length - 1
+            );
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            selectedSuggestionIndex.value = Math.max(selectedSuggestionIndex.value - 1, -1);
+        } else if (event.key === 'Enter') {
+            event.preventDefault();
+            if (selectedSuggestionIndex.value >= 0) {
+                selectSuggestion(suggestions.value[selectedSuggestionIndex.value]);
+            } else {
+                handleSearch();
+            }
+        } else if (event.key === 'Escape') {
+            showSuggestions.value = false;
+            clearSuggestions();
+        }
+    } else if (event.key === 'Enter') {
+        handleSearch();
+    }
+};
+
+// Click outside to close suggestions
+const handleClickOutside = (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.search-container')) {
+        showSuggestions.value = false;
+    }
 };
 
 // WATCHERS
@@ -147,6 +225,8 @@ watch(selectedLanguage, () => {
     clearInterval(typingInterval);
     clearTimeout(erasingTimeout);
     startTypingAnimation();
+    clearSuggestions();
+    showSuggestions.value = false;
 
     const enableAvro = selectedLanguage.value !== 'en';
     isAvroEnabled.value = enableAvro;
@@ -165,6 +245,8 @@ watch(searchTerm, (newVal) => {
         clearTimeout(erasingTimeout);
     } else {
         startTypingAnimation();
+        showSuggestions.value = false;
+        clearSuggestions();
     }
 });
 
@@ -185,6 +267,7 @@ watch(transcript, (newTranscript) => {
 onMounted(() => {
     initVoiceRecognition();
     startTypingAnimation();
+    document.addEventListener('click', handleClickOutside);
 
     const checkAndInit = () => {
         if ((window as any).$?.fn?.bangla) {
@@ -199,6 +282,7 @@ onMounted(() => {
 onUnmounted(() => {
     clearInterval(typingInterval);
     clearTimeout(erasingTimeout);
+    document.removeEventListener('click', handleClickOutside);
     if (inputRef.value && (window as any).$) {
         ((window as any).$(inputRef.value)).off('input');
     }
@@ -223,9 +307,13 @@ onUnmounted(() => {
             </button>
         </div>
 
-        <div class="relative">
+        <div class="relative search-container">
             <input ref="inputRef" v-model="searchTerm" type="text" autofocus
-                :placeholder="searchTerm.length === 0 ? typedText : ''" @keydown="handleKeyDown" :class="[
+                :placeholder="searchTerm.length === 0 ? typedText : ''" 
+                @input="handleInputChange"
+                @keydown="handleKeyDown" 
+                @focus="searchTerm.trim() && (showSuggestions = true)"
+                :class="[
                     'w-full px-6 py-4 pr-32 text-lg rounded-2xl border-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none transition-colors placeholder-gray-400 dark:placeholder-gray-500',
                     hasError ? 'border-red-500 focus:border-red-500' : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400'
                 ]" />
@@ -250,6 +338,56 @@ onUnmounted(() => {
                     title="Search">
                     <i class="fas fa-search"></i>
                 </button>
+            </div>
+
+            <!-- Suggestions Dropdown -->
+            <div v-if="showSuggestions && (suggestions.length > 0 || noSuggestionsFound)" 
+                class="absolute z-50 w-full mt-2 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-xl shadow-xl max-h-96 overflow-y-auto">
+                
+                <!-- Loading State -->
+                <div v-if="suggestionsLoading" class="p-4 text-center text-gray-500 dark:text-gray-400">
+                    <i class="fas fa-spinner fa-spin mr-2"></i>Loading suggestions...
+                </div>
+
+                <!-- Suggestions List -->
+                <ul v-else-if="suggestions.length > 0" class="py-2">
+                    <li v-for="(suggestion, index) in suggestions" 
+                        :key="suggestion.id"
+                        @click="selectSuggestion(suggestion)"
+                        @mouseenter="selectedSuggestionIndex = index"
+                        :class="[
+                            'px-4 py-3 cursor-pointer transition-colors border-b border-gray-100 dark:border-gray-700 last:border-b-0',
+                            selectedSuggestionIndex === index 
+                                ? 'bg-blue-50 dark:bg-blue-900/30' 
+                                : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                        ]">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-book text-blue-500 dark:text-blue-400 mt-1"></i>
+                            <div class="flex-1 min-w-0">
+                                <div class="font-semibold text-gray-900 dark:text-white truncate">
+                                    {{ suggestion.word?.[selectedLanguage] || suggestion.word?.bpy || 'N/A' }}
+                                </div>
+                                <div v-if="suggestion.pronunciation" class="text-sm text-gray-500 dark:text-gray-400 truncate">
+                                    {{ suggestion.pronunciation }}
+                                </div>
+                                <div v-if="suggestion.partOfSpeech" class="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                                    {{ suggestion.partOfSpeech }}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- No Results -->
+                <div v-else-if="noSuggestionsFound" class="p-6 text-center">
+                    <i class="fas fa-search text-4xl text-gray-300 dark:text-gray-600 mb-3"></i>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">No words found for "{{ searchTerm }}"</p>
+                    <button @click="handleAddWord"
+                        class="px-6 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors inline-flex items-center gap-2">
+                        <i class="fas fa-plus"></i>
+                        Add this word
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -294,5 +432,22 @@ onUnmounted(() => {
 
 .animate-fade-in {
     animation: fade-in 0.2s ease-out;
+}
+
+/* Custom scrollbar for suggestions */
+.max-h-96::-webkit-scrollbar {
+    width: 8px;
+}
+
+.max-h-96::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-700 rounded-r-xl;
+}
+
+.max-h-96::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+.max-h-96::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
 }
 </style>
