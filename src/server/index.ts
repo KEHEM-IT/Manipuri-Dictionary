@@ -1,4 +1,7 @@
 import express, { Application } from 'express';
+import 'dotenv/config';
+import app from './app.js';
+
 import cors from 'cors';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -29,7 +32,7 @@ app.get('/api/health', (_req, res) => {
 app.get('/api/debug', (_req, res) => {
     const fs = require('fs');
     const path = require('path');
-    
+
     const diagnostics = {
         cwd: process.cwd(),
         __dirname: __dirname || 'not available',
@@ -38,7 +41,7 @@ app.get('/api/debug', (_req, res) => {
         env: process.env.VERCEL ? 'vercel' : 'local',
         paths: {} as any
     };
-    
+
     // Check various possible paths
     const pathsToCheck = [
         './dist/server/data/alphabets',
@@ -48,7 +51,7 @@ app.get('/api/debug', (_req, res) => {
         path.join(process.cwd(), 'dist/server/data/alphabets'),
         path.join(process.cwd(), 'src/server/data/alphabets'),
     ];
-    
+
     pathsToCheck.forEach(p => {
         try {
             const exists = fs.existsSync(p);
@@ -60,7 +63,7 @@ app.get('/api/debug', (_req, res) => {
             diagnostics.paths[p] = { error: e.message };
         }
     });
-    
+
     res.json(diagnostics);
 });
 
